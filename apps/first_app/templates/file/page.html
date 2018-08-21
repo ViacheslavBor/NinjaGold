@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="{% static 'gold/style.css' %}">
+</head>
+<body>
+	<h3>Gold: {{request.session.gold}}</h3>
+	<form action="/process_money/farm" method="POST">
+		{% csrf_token %}
+		<h3>Farm</h3>
+		<input type="submit" value="Steal Gold!">
+	</form>
+	<form action="/process_money/cave" method="POST">
+		{% csrf_token %}
+		<h3>Cave</h3>
+		<input type="submit" value="Steal Gold!">
+	</form>
+	<form action="/process_money/house" method="POST">
+		{% csrf_token %}
+		<h3>House</h3>
+		<input type="submit" value="Steal Gold!">
+	</form>
+	<form action="/process_money/casino" method="POST">
+		{% csrf_token %}
+		<h3>Casino</h3>
+		<input type="submit" value="Steal Gold!">
+	</form>
+	<form action="/reset" method="POST"><br>
+		{% csrf_token %}
+		<input type="submit" value="Clear">
+	</form>
+	<div id="log">
+		{% for event in request.session.log %}
+			<p class="{{event.0}}">{{event.1}}</p>
+		{% endfor %}
+	</div>
+</body>
+</html>
